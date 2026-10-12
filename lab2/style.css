@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #F8F7E2;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #474C80;
+}
+
+.header-div {
+    background-color: #474C80;
+    color: #F8F7E2;
+    padding: 40px;
+}
+
+.nav-links {
+    color: #F8F7E2;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.section-div {
+    padding: 60px 20px;
+}
+
+.about-text {
+    color: #333;
+    line-height: 1.6;
+}
+
+.project-card {
+    background-color: white;
+    display: inline-block;
+    width: 30%;
+    margin: 1%;
+    padding: 20px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #ccc;
+}
+
+.project-card h3 {
+    color: #474C80;
+    margin-bottom: 10px;
+}
+
+.contact-form {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.input-box {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.submit-btn {
+    background-color: #474C80;
+    color: #F8F7E2;
+    padding: 15px;
+    border: none;
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
