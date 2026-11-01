@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2eee5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #2c2824;
+}
+
+.calculator-chassis {
+    width: 340px;
+    background: #faf8f5;
+    border: 2px solid #ded8cb;
+    border-radius: 24px;
+    padding: 22px;
+}
+
+.lcd-screen {
+    background: #cfd9c2;
+    border: 2px solid #a3b097;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    min-height: 104px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.lcd-history {
+    font-size: 15px;
+    font-weight: bold;
+    color: #5b6752;
+    min-height: 20px;
+    word-break: break-all;
+}
+
+.lcd-value {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1c2718;
+    line-height: 1.1;
+    word-break: break-all;
+    transition: font-size 0.15s ease;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    height: 56px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.1s ease, filter 0.1s ease;
+}
+
+.btn:active {
+    opacity: 0.85;
+}
+
+.btn-num {
+    background: #ebe6dc;
+    color: #2c2824;
+}
+
+.btn-num:hover {
+    filter: brightness(0.97);
+}
+
+.btn-red {
+    background: #dc3528;
+    color: #ffffff;
+}
+
+.btn-red:hover {
+    filter: brightness(0.95);
+}
+
+.btn-orange {
+    background: #ee6b1d;
+    color: #ffffff;
+}
+
+.btn-orange:hover {
+    filter: brightness(0.95);
+}
+
+.btn-yellow {
+    background: #f5b525;
+    color: #382d15;
+}
+
+.btn-yellow:hover {
+    filter: brightness(0.95);
+}
+
+.btn-blue {
+    background: #1d70b8;
+    color: #ffffff;
+    font-size: 23px;
+}
+
+.btn-blue:hover {
+    filter: brightness(0.95);
+}
+
+.btn-blue.active {
+    background: #114775;
+    color: #ffffff;
+}
+
+.btn-green {
+    background: #2f9e4f;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.btn-green:hover {
+    filter: brightness(0.95);
+}

@@ -1,0 +1,363 @@
+/* ==========================================================================
+   Abatron 803 (WEBDEV CSE343) Realistic Calculator Stylesheet
+   Native Coordinate Space of BODY.png: 782px × 1346px
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, #e6e2d8 0%, #cdc7b8 55%, #b2ab9b 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.viewport-stage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vh 2vw;
+}
+
+/*
+ * Calculator container locked to exact aspect ratio of BODY.png (782 / 1346).
+ * Scales fluidly to fit any viewport height or width while keeping pixel-accurate
+ * alignment for every cutout and button.
+ */
+.calculator {
+  position: relative;
+  aspect-ratio: 782 / 1346;
+  height: min(94vh, calc(94vw * (1346 / 782)));
+  width: auto;
+  border-radius: 2.2% / 1.25%;
+  filter:
+    drop-shadow(0 24px 38px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 6px 12px rgba(0, 0, 0, 0.28));
+}
+
+/* ==========================================================================
+   Layer 1: Recessed Vintage Red LED Display Window
+   Cutout in BODY.png: x = 65..717 (653px), y = 291..580 (290px)
+   Slightly expanded under the opaque bezel (x: 62..720, y: 288..583) to prevent
+   any subpixel seam.
+   ========================================================================== */
+.display-window {
+  position: absolute;
+  left: 7.93%;
+  top: 21.40%;
+  width: 84.14%;
+  height: 21.92%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background: #140d0c;
+  overflow: hidden;
+  box-shadow:
+    inset 0 8px 18px rgba(0, 0, 0, 0.92),
+    inset 0 2px 5px rgba(0, 0, 0, 0.85);
+}
+
+.display-glass {
+  position: relative;
+  flex: 1 1 81.5%;
+  width: 100%;
+  background:
+    radial-gradient(ellipse at 58% 52%, #291210 0%, #190b0a 58%, #100706 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 10px 20px rgba(0, 0, 0, 0.88),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.75);
+}
+
+/* Subtle internal magnifying lens bar typical of 1970s pocket calculators */
+.display-magnifier-bar {
+  position: relative;
+  width: 86%;
+  height: 44%;
+  margin-top: 4%;
+  border-radius: 4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 60, 40, 0.03) 0%,
+    rgba(45, 10, 8, 0.45) 18%,
+    rgba(22, 5, 4, 0.65) 50%,
+    rgba(45, 10, 8, 0.4) 85%,
+    rgba(255, 80, 60, 0.04) 100%
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 120, 90, 0.07),
+    0 -1px 0 rgba(0, 0, 0, 0.8),
+    inset 0 2px 6px rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 5.5% 0 4%;
+}
+
+.led-strip {
+  width: 100%;
+  height: 68%;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 2.2%;
+  align-items: center;
+}
+
+.led-cell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.led-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Unlit 7-segment ghost traces */
+.seg {
+  fill: #2c0d0b;
+  opacity: 0.42;
+  transition: fill 0.035s ease, opacity 0.035s ease, filter 0.035s ease;
+}
+
+/* Lit glowing red GaAsP LED segments */
+.seg.on {
+  fill: #ff2a18;
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 2.5px rgba(255, 48, 24, 0.95))
+    drop-shadow(0 0 6px rgba(255, 30, 10, 0.75));
+}
+
+.seg-dp {
+  fill: #2c0d0b;
+  opacity: 0.35;
+  transition: fill 0.035s ease, opacity 0.035s ease, filter 0.035s ease;
+}
+
+.seg-dp.on {
+  fill: #ff3b22;
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 2.5px rgba(255, 60, 30, 0.98))
+    drop-shadow(0 0 6px rgba(255, 30, 10, 0.85));
+}
+
+/* Subtle K (Constant) mode indicator dot in the leftmost status cell */
+.seg-k-indicator {
+  fill: #2c0d0b;
+  opacity: 0.22;
+  transition: fill 0.05s ease, opacity 0.05s ease, filter 0.05s ease;
+}
+
+.seg-k-indicator.on {
+  fill: #ff3b22;
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 3px rgba(255, 60, 30, 0.98))
+    drop-shadow(0 0 6px rgba(255, 30, 10, 0.85));
+}
+
+.display-glass-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.055) 0%,
+    rgba(255, 255, 255, 0.018) 32%,
+    transparent 33%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Lower angled bevel lip inside the display cutout (y: 528..581 in 782x1346 space) */
+.display-lower-lip {
+  flex: 0 0 18.5%;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    #2e2420 0%,
+    #241c18 22%,
+    #181210 78%,
+    #0f0b0a 100%
+  );
+  border-top: 1px solid rgba(255, 235, 215, 0.09);
+  box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   Layer 2: Recessed Keypad Cavities & Interactive Buttons
+   ========================================================================== */
+
+/* Dark recessed well behind K & C (x: 389..721, y: 637..797) */
+.keypad-cavity-top {
+  position: absolute;
+  left: 49.74%;
+  top: 47.33%;
+  width: 42.46%;
+  height: 11.89%;
+  background: #141412;
+  z-index: 1;
+}
+
+/* Dark recessed well behind 4x4 grid (x: 63..721, y: 793..1287) */
+.keypad-cavity-main {
+  position: absolute;
+  left: 8.06%;
+  top: 58.92%;
+  width: 84.14%;
+  height: 36.70%;
+  background: #141412;
+  z-index: 1;
+}
+
+/*
+ * Top-Right Orange Keys: K and C
+ * Cutout in BODY.png: x = 391..719 (328px), y = 639..795 (156px)
+ * left = 391 / 782 = 50.00%
+ * top  = 639 / 1346 = 47.474%
+ * width = 328 / 782 = 41.944%
+ * height = 156 / 1346 = 11.590%
+ */
+.keypad-top-row {
+  position: absolute;
+  left: 50.00%;
+  top: 47.474%;
+  width: 41.944%;
+  height: 11.590%;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
+
+/*
+ * Main 4x4 Button Grid
+ * Cutout in BODY.png: x = 65..719 (654px), y = 795..1285 (490px)
+ * left = 65 / 782 = 8.312%
+ * top  = 795 / 1346 = 59.064%
+ * width = 654 / 782 = 83.632%
+ * height = 490 / 1346 = 36.404%
+ */
+.keypad-main-grid {
+  position: absolute;
+  left: 8.312%;
+  top: 59.064%;
+  width: 83.632%;
+  height: 36.404%;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+/* Base Sprite Button Styling */
+.calc-key {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.055s cubic-bezier(0.2, 0, 0.38, 0.9),
+    filter 0.055s ease;
+  will-change: transform, filter;
+}
+
+.calc-key img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/*
+ * Transparent Margin Compensation for K.png and c.png:
+ * - K.png is 168×161 with opaque keycap at x: 4..166 (163px), y: 7..159 (153px).
+ * - c.png is 172×165 with opaque keycap at x: 4..170 (167px), y: 7..163 (157px).
+ * Offsetting and scaling the inner image aligns their opaque bounds flush with
+ * the cell edges, matching all other 16 buttons.
+ */
+.key-k img {
+  width: 103.07%;
+  height: 105.23%;
+  margin-left: -2.45%;
+  margin-top: -4.58%;
+}
+
+.key-c img {
+  width: 102.99%;
+  height: 105.10%;
+  margin-left: -2.40%;
+  margin-top: -4.46%;
+}
+
+/* Subtle hover & focus states */
+.calc-key:hover {
+  filter: brightness(1.04);
+}
+
+.calc-key:focus-visible {
+  outline: 2px solid rgba(255, 115, 0, 0.85);
+  outline-offset: -2px;
+  z-index: 3;
+}
+
+/* Realistic physical key depression on click/touch or keyboard press */
+.calc-key:active,
+.calc-key.is-pressed {
+  transform: translateY(2.2%) scale(0.978);
+  filter: brightness(0.88) contrast(1.04);
+  z-index: 1;
+}
+
+/* Highlight active operator / Constant K lock subtly on the keycap */
+.calc-key.is-locked-k {
+  filter: brightness(0.93) saturate(1.12);
+}
+
+/* ==========================================================================
+   Layer 3: Molded Calculator Body Overlay (BODY.png)
+   Sits above the edges of the display and buttons so the physical bezel shadows
+   and inner bevels frame the components naturally. pointer-events: none ensures
+   all mouse/touch clicks pass directly to the buttons underneath.
+   ========================================================================== */
+.calculator-body-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abatron 803 — WEBDEV CSE343 Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="viewport-stage">
+    <div class="calculator" id="calculator" role="application" aria-label="Abatron 803 Vintage Pocket Calculator">
+
+      <!-- Layer 1: Recessed Vintage Red LED Display Window (x: 64..718, y: 290..581 in 782x1346 space) -->
+      <div class="display-window" aria-live="polite" aria-atomic="true">
+        <div class="display-glass">
+          <div class="display-magnifier-bar">
+            <div class="led-strip" id="led-strip" aria-label="12345678">
+              <!-- Populated dynamically by script.js with 9 seven-segment SVG digit cells -->
+            </div>
+          </div>
+          <div class="display-glass-glare"></div>
+        </div>
+        <div class="display-lower-lip"></div>
+      </div>
+
+      <!-- Layer 2: Recessed Keypad Cavity & Interactive Sprite Buttons -->
+      <div class="keypad-cavity-top"></div>
+      <div class="keypad-cavity-main"></div>
+
+      <!-- Top-Right Orange Function Keys: K and C (x: 391..719, y: 639..795) -->
+      <div class="keypad-top-row">
+        <button type="button" class="calc-key key-orange key-k" data-action="k" data-key="k" aria-label="Constant or Backspace (K)" title="K — Backspace while typing / Constant lock">
+          <img src="K.png" alt="K" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-orange key-c" data-action="clear" data-key="c" aria-label="Clear (C)" title="C — Clear (Esc / C)">
+          <img src="c.png" alt="C" draggable="false" />
+        </button>
+      </div>
+
+      <!-- Main 4x4 Button Grid (x: 65..719, y: 795..1285) -->
+      <div class="keypad-main-grid">
+        <!-- Row 1: 7, 8, 9, - -->
+        <button type="button" class="calc-key key-dark" data-digit="7" data-key="7" aria-label="7">
+          <img src="7.png" alt="7" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-dark" data-digit="8" data-key="8" aria-label="8">
+          <img src="8.png" alt="8" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-dark" data-digit="9" data-key="9" aria-label="9">
+          <img src="9.png" alt="9" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-light" data-operator="-" data-key="-" aria-label="Subtract">
+          <img src="minus.png" alt="-" draggable="false" />
+        </button>
+
+        <!-- Row 2: 4, 5, 6, ÷ -->
+        <button type="button" class="calc-key key-dark" data-digit="4" data-key="4" aria-label="4">
+          <img src="4.png" alt="4" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-dark" data-digit="5" data-key="5" aria-label="5">
+          <img src="5.png" alt="5" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-dark" data-digit="6" data-key="6" aria-label="6">
+          <img src="6.png" alt="6" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-light" data-operator="/" data-key="/" aria-label="Divide">
+          <img src="divide.png" alt="÷" draggable="false" />
+        </button>
+
+        <!-- Row 3: 1, 2, 3, × -->
+        <button type="button" class="calc-key key-dark" data-digit="1" data-key="1" aria-label="1">
+          <img src="1.png" alt="1" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-dark" data-digit="2" data-key="2" aria-label="2">
+          <img src="2.png" alt="2" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-dark" data-digit="3" data-key="3" aria-label="3">
+          <img src="3.png" alt="3" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-light" data-operator="*" data-key="*" aria-label="Multiply">
+          <img src="multipl.png" alt="×" draggable="false" />
+        </button>
+
+        <!-- Row 4: 0, ., =, + -->
+        <button type="button" class="calc-key key-dark" data-digit="0" data-key="0" aria-label="0">
+          <img src="0.png" alt="0" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-dark" data-action="decimal" data-key="." aria-label="Decimal Point">
+          <img src="DOT.png" alt="." draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-light" data-action="equals" data-key="=" aria-label="Equals">
+          <img src="equal.png" alt="=" draggable="false" />
+        </button>
+        <button type="button" class="calc-key key-light" data-operator="+" data-key="+" aria-label="Add">
+          <img src="plus.png" alt="+" draggable="false" />
+        </button>
+      </div>
+
+      <!-- Layer 3: Calculator Molded Body Overlay (782 x 1346) -->
+      <img src="BODY.png" alt="" class="calculator-body-overlay" draggable="false" />
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

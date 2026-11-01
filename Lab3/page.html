@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-chassis">
+        <section class="lcd-screen">
+            <div id="previous-operand" class="lcd-history"></div>
+            <div id="current-operand" class="lcd-value">0</div>
+        </section>
+
+        <main id="keypad" class="keypad">
+            <button type="button" class="btn btn-red" data-action="clear">AC</button>
+            <button type="button" class="btn btn-orange" data-action="delete">DEL</button>
+            <button type="button" class="btn btn-yellow" data-action="percent">%</button>
+            <button type="button" class="btn btn-blue" data-action="operator" data-value="÷">÷</button>
+
+            <button type="button" class="btn btn-num" data-value="7">7</button>
+            <button type="button" class="btn btn-num" data-value="8">8</button>
+            <button type="button" class="btn btn-num" data-value="9">9</button>
+            <button type="button" class="btn btn-blue" data-action="operator" data-value="×">×</button>
+
+            <button type="button" class="btn btn-num" data-value="4">4</button>
+            <button type="button" class="btn btn-num" data-value="5">5</button>
+            <button type="button" class="btn btn-num" data-value="6">6</button>
+            <button type="button" class="btn btn-blue" data-action="operator" data-value="−">−</button>
+
+            <button type="button" class="btn btn-num" data-value="1">1</button>
+            <button type="button" class="btn btn-num" data-value="2">2</button>
+            <button type="button" class="btn btn-num" data-value="3">3</button>
+            <button type="button" class="btn btn-blue" data-action="operator" data-value="+">+</button>
+
+            <button type="button" class="btn btn-yellow" data-action="negate">±</button>
+            <button type="button" class="btn btn-num" data-value="0">0</button>
+            <button type="button" class="btn btn-num" data-action="decimal" data-value=".">.</button>
+            <button type="button" class="btn btn-green" data-action="calculate">=</button>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

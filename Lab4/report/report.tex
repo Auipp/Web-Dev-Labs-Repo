@@ -1,0 +1,83 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[a4paper, margin=0.8in, headheight=16pt]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{float}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Amir Atef Abdullah - 24P0310}
+\fancyhead[C]{\footnotesize Web Development CSE343}
+\fancyhead[R]{\footnotesize Lab \#4}
+\fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\definecolor{codebg}{rgb}{0.98,0.98,0.98}
+\definecolor{framecolor}{rgb}{0.8,0.8,0.8}
+
+\lstset{
+    backgroundcolor=\color{codebg},
+    frame=single,
+    rulecolor=\color{framecolor},
+    numbers=left,
+    numberstyle=\fontsize{6}{7}\selectfont\color{gray},
+    basicstyle=\fontsize{8}{9.4}\ttfamily,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=2
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{7cm}
+    {\LARGE \textbf{Web Development CSE343: Lab \#4}}\\[2.5cm]
+    {\large Amir Atef Abdullah - 24P0310}
+    \vfill
+\end{titlepage}
+
+\newpage
+\section*{Screenshots}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.48\textwidth]{screenshot1.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{screenshot2.png}
+\end{figure}
+
+\newpage
+\section*{Source Code Listings}
+
+\subsection*{page.html}
+\lstinputlisting[language=HTML]{../page.html}
+
+\newpage
+\subsection*{style.css}
+\lstinputlisting{../style.css}
+
+\newpage
+\subsection*{app.ts}
+\lstinputlisting{../app.ts}
+
+\newpage
+\subsection*{tsconfig.json}
+\lstinputlisting{../tsconfig.json}
+
+\vspace{0.8cm}
+\noindent \textbf{repo link:}\\
+\url{https://github.com/Auipp/Web-Dev-Labs-Repo}
+
+\end{document}

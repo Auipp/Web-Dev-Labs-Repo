@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo-container">
+        <header class="todo-header">
+            <h1 class="todo-title">Todo App</h1>
+            <span class="todo-tag">Workspace</span>
+        </header>
+
+        <form id="todo-form" class="todo-form">
+            <input type="text" id="todo-input" class="todo-input" placeholder="What needs doing?" autofocus autocomplete="off">
+            <button type="submit" id="add-btn" class="btn-add">Add</button>
+        </form>
+
+        <div class="todo-toolbar">
+            <span class="todo-tip">Tip: double-click a todo to edit. Press Enter to save.</span>
+            <div class="filter-group">
+                <button type="button" class="filter-btn active" data-filter="all">All</button>
+                <button type="button" class="filter-btn" data-filter="active">Active</button>
+                <button type="button" class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+        </div>
+
+        <ul id="todo-list" class="todo-list"></ul>
+
+        <footer class="todo-footer">
+            <span id="items-left" class="items-left">0 items left</span>
+            <div class="footer-actions">
+                <button type="button" id="clear-completed-btn" class="btn-footer">Clear completed</button>
+                <button type="button" id="clear-all-btn" class="btn-footer">Clear all</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
